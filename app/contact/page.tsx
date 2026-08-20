@@ -23,7 +23,7 @@ export default function ContactPage() {
             </h2>
             <a
               href="mailto:info@lenskaya-art.ru"
-              className="mt-2 block text-lg hover:text-neutral-600"
+              className="mt-2 flex min-h-11 items-center text-lg hover:text-neutral-600"
             >
               info@lenskaya-art.ru
             </a>
@@ -35,7 +35,7 @@ export default function ContactPage() {
             </h2>
             <a
               href="tel:+79990000000"
-              className="mt-2 block text-lg hover:text-neutral-600"
+              className="mt-2 flex min-h-11 items-center text-lg hover:text-neutral-600"
             >
               +7 (999) 000-00-00
             </a>
@@ -52,12 +52,12 @@ export default function ContactPage() {
             <h2 className="text-xs uppercase tracking-[0.2em] text-neutral-400">
               Соцсети
             </h2>
-            <div className="mt-2 flex gap-4 text-lg">
+            <div className="mt-2 flex flex-wrap gap-x-4 gap-y-2 text-lg">
               <a
                 href="https://www.instagram.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-neutral-600"
+                className="flex min-h-11 items-center hover:text-neutral-600"
               >
                 Instagram
               </a>
@@ -65,7 +65,7 @@ export default function ContactPage() {
                 href="https://vk.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-neutral-600"
+                className="flex min-h-11 items-center hover:text-neutral-600"
               >
                 ВКонтакте
               </a>
@@ -81,7 +81,7 @@ export default function ContactPage() {
             <input
               type="text"
               name="name"
-              className="mt-2 w-full border-b border-neutral-300 bg-transparent py-2 outline-none focus:border-neutral-900"
+              className="mt-2 min-h-11 w-full border-b border-neutral-300 bg-transparent py-2 outline-none focus:border-neutral-900"
               placeholder="Ваше имя"
             />
           </div>
@@ -92,7 +92,7 @@ export default function ContactPage() {
             <input
               type="email"
               name="email"
-              className="mt-2 w-full border-b border-neutral-300 bg-transparent py-2 outline-none focus:border-neutral-900"
+              className="mt-2 min-h-11 w-full border-b border-neutral-300 bg-transparent py-2 outline-none focus:border-neutral-900"
               placeholder="you@example.com"
             />
           </div>
@@ -109,7 +109,7 @@ export default function ContactPage() {
           </div>
           <button
             type="submit"
-            className="mt-4 bg-neutral-900 px-8 py-3 text-sm uppercase tracking-wide text-white hover:bg-neutral-700"
+            className="mt-4 flex min-h-11 items-center bg-neutral-900 px-8 py-3 text-sm uppercase tracking-wide text-white hover:bg-neutral-700"
           >
             Отправить
           </button>

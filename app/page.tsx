@@ -1,10 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { artworks, series } from "@/lib/data";
 
 export default function Home() {
-  const featured = artworks.slice(0, 4);
-
   return (
     <div>
       {/* Hero */}
@@ -12,9 +9,9 @@ export default function Home() {
         <Image
           src="/images/lenskaya-hero.jpg"
           alt="Анастасия Ленская — картина"
-
           fill
           priority
+          sizes="100vw"
           className="object-cover opacity-70"
         />
         <div className="relative z-10 mx-auto w-full max-w-6xl px-6 pb-16 text-white">
@@ -30,14 +27,14 @@ export default function Home() {
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <Link
-              href="/works"
-              className="border border-white px-6 py-3 text-sm uppercase tracking-wide transition-colors hover:bg-white hover:text-neutral-900"
+              href="/portfolio"
+              className="flex min-h-11 items-center border border-white px-6 py-3 text-sm uppercase tracking-wide transition-colors hover:bg-white hover:text-neutral-900"
             >
-              Смотреть работы
+              Смотреть портфолио
             </Link>
             <Link
               href="/biography"
-              className="px-6 py-3 text-sm uppercase tracking-wide text-neutral-200 underline-offset-4 hover:underline"
+              className="flex min-h-11 items-center px-6 py-3 text-sm uppercase tracking-wide text-neutral-200 underline-offset-4 hover:underline"
             >
               О художнице
             </Link>
@@ -58,54 +55,20 @@ export default function Home() {
         </p>
       </section>
 
-      {/* Featured works */}
-      <section className="mx-auto max-w-6xl px-6 pb-24">
-        <div className="mb-10 flex items-end justify-between">
-          <h2 className="font-serif text-2xl sm:text-3xl">Избранные работы</h2>
-          <Link
-            href="/works"
-            className="text-sm uppercase tracking-wide text-neutral-500 hover:text-neutral-900"
-          >
-            Все работы →
-          </Link>
-        </div>
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {featured.map((art) => (
-            <Link key={art.slug} href={`/works/${art.slug}`} className="group">
-              <div className="relative aspect-[4/5] w-full overflow-hidden bg-neutral-100">
-                <Image
-                  src={art.image}
-                  alt={art.title}
-                  fill
-                  sizes="(max-width: 768px) 50vw, 25vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-              <p className="mt-3 text-sm font-medium">{art.title}</p>
-              <p className="text-xs text-neutral-500">{art.year}</p>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* Series */}
+      {/* Portfolio teaser */}
       <section className="bg-neutral-50 py-24">
-        <div className="mx-auto max-w-6xl px-6">
-          <h2 className="mb-10 font-serif text-2xl sm:text-3xl">Серии работ</h2>
-          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2">
-            {series.map((s) => (
-              <Link
-                key={s.slug}
-                href={`/works?series=${s.slug}`}
-                className="group border-b border-neutral-200 pb-8"
-              >
-                <h3 className="font-serif text-xl group-hover:text-neutral-600">
-                  {s.title}
-                </h3>
-                <p className="mt-2 text-sm text-neutral-600">{s.description}</p>
-              </Link>
-            ))}
-          </div>
+        <div className="mx-auto max-w-6xl px-6 text-center">
+          <h2 className="font-serif text-2xl sm:text-3xl">Портфолио</h2>
+          <p className="mx-auto mt-4 max-w-2xl text-neutral-600">
+            Творческие проекты «Выгорание» и «Диалоги с городом» — с
+            описанием, фотографиями работ и возможностью приобретения.
+          </p>
+          <Link
+            href="/portfolio"
+            className="mt-8 inline-flex min-h-11 items-center bg-neutral-900 px-8 py-3 text-sm uppercase tracking-wide text-white hover:bg-neutral-700"
+          >
+            Перейти к портфолио
+          </Link>
         </div>
       </section>
 
@@ -120,7 +83,7 @@ export default function Home() {
         </p>
         <Link
           href="/contact"
-          className="mt-8 inline-block bg-neutral-900 px-8 py-3 text-sm uppercase tracking-wide text-white hover:bg-neutral-700"
+          className="mt-8 inline-flex min-h-11 items-center bg-neutral-900 px-8 py-3 text-sm uppercase tracking-wide text-white hover:bg-neutral-700"
         >
           Связаться
         </Link>

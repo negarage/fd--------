@@ -16,11 +16,10 @@ export default function BiographyPage() {
           <div className="relative aspect-[4/5] w-full overflow-hidden bg-neutral-100">
             <Image
               src="/images/lenskaya-portrait.jpg"
-
               alt="Анастасия Ленская"
               fill
               className="object-cover"
-              sizes="380px"
+              sizes="(max-width: 1024px) 100vw, 380px"
             />
           </div>
 

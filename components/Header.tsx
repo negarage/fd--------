@@ -6,9 +6,9 @@ import { usePathname } from "next/navigation";
 
 const NAV_LINKS = [
   { href: "/biography", label: "Биография" },
-  { href: "/works", label: "Работы" },
+  { href: "/portfolio", label: "Портфолио" },
   { href: "/exhibitions", label: "Выставки" },
-  { href: "/news", label: "Новости" },
+  { href: "/blog", label: "Блог" },
   { href: "/contact", label: "Контакты" },
 ];
 
