@@ -42,3 +42,7 @@ next-env.d.ts
 
 # raw source photos (not for deployment)
 фото для сайта/
+
+.next-dev/
+previews*/
+*.tsbuildinfo

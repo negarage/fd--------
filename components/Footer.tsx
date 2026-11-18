@@ -1,32 +1,17 @@
-export default function Footer() {
-  return (
-    <footer className="border-t border-neutral-200 bg-white">
-      <div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-10 text-sm text-neutral-500 sm:flex-row sm:items-center sm:justify-between">
-        <p className="tracking-wide">
-          © {new Date().getFullYear()} Анастасия Ленская. Все права защищены.
-        </p>
-        <div className="flex gap-6">
-          <a
-            href="https://www.instagram.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-neutral-900"
-          >
-            Instagram
-          </a>
-          <a
-            href="https://vk.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-neutral-900"
-          >
-            ВКонтакте
-          </a>
-          <a href="mailto:info@lenskaya-art.ru" className="hover:text-neutral-900">
-            info@lenskaya-art.ru
-          </a>
-        </div>
-      </div>
-    </footer>
-  );
+export function Footer() {
+ return <footer id="contact" className="section-pad contact-slide">
+  <div className="contact-copy">
+   <h2>Давайте <br/>обсуждать <br/>искусство!</h2>
+
+  </div>
+  <figure className="contact-portrait">
+   <svg viewBox="160 340 693 800" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Анастасия Ленская в мастерской">
+    <image href="/images/anastasia-studio.jpg" width="853" height="1280"/>
+   </svg>
+  </figure>
+   <div className="contact-links">
+    <a href="https://t.me/alenskaya" target="_blank" rel="noopener noreferrer" className="contact-cta">Написать мне в Telegram <span aria-hidden="true">↗</span></a>
+    <a href="https://t.me/+6geBESugnlA0N2Ji" target="_blank" rel="noopener noreferrer" className="contact-cta">Группа в Telegram <span aria-hidden="true">↗</span></a>
+   </div>
+ </footer>;
 }
