@@ -1,74 +1,23 @@
-"use client";
-
-import Link from "next/link";
-import { useState } from "react";
-import { usePathname } from "next/navigation";
-
-const NAV_LINKS = [
-  { href: "/biography", label: "Биография" },
-  { href: "/portfolio", label: "Портфолио" },
-  { href: "/exhibitions", label: "Выставки" },
-  { href: "/blog", label: "Блог" },
-  { href: "/contact", label: "Контакты" },
-];
-
-export default function Header() {
-  const [open, setOpen] = useState(false);
-  const pathname = usePathname();
-
-  return (
-    <header className="sticky top-0 z-50 border-b border-neutral-200 bg-white/90 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
-        <Link
-          href="/"
-          className="font-serif text-lg tracking-[0.2em] uppercase text-neutral-900"
-          onClick={() => setOpen(false)}
-        >
-          Анастасия Ленская
-        </Link>
-
-        <nav className="hidden gap-8 text-sm tracking-wide uppercase md:flex">
-          {NAV_LINKS.map((link) => {
-            const active = pathname === link.href;
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`transition-colors hover:text-neutral-900 ${
-                  active ? "text-neutral-900" : "text-neutral-500"
-                }`}
-              >
-                {link.label}
-              </Link>
-            );
-          })}
-        </nav>
-
-        <button
-          type="button"
-          aria-label="Открыть меню"
-          onClick={() => setOpen((v) => !v)}
-          className="flex flex-col gap-1.5 md:hidden"
-        >
-          <span className="h-px w-6 bg-neutral-900" />
-          <span className="h-px w-6 bg-neutral-900" />
-        </button>
-      </div>
-
-      {open && (
-        <nav className="flex flex-col gap-1 border-t border-neutral-200 bg-white px-6 py-4 text-sm uppercase tracking-wide md:hidden">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setOpen(false)}
-              className="py-2 text-neutral-700"
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-      )}
-    </header>
-  );
+'use client';
+import { useEffect, useRef, useState } from 'react';
+export function Header() {
+ const [dark, setDark] = useState(false);
+ const [menuOpen, setMenuOpen] = useState(false);
+ const [menuClosing, setMenuClosing] = useState(false);
+ const menuDialog = useRef<HTMLDialogElement>(null);
+ const [slide, setSlide] = useState(0);
+ useEffect(()=>{
+  const update=(event:Event)=>setSlide((event as CustomEvent<number>).detail);
+  window.addEventListener('lenskaya:slide-change',update);
+  return ()=>window.removeEventListener('lenskaya:slide-change',update);
+ },[]);
+ const menuButton = useRef<HTMLButtonElement>(null);
+ useEffect(() => { setDark(document.documentElement.dataset.theme === 'dark'); }, []);
+ useEffect(() => {
+  if(menuOpen) menuDialog.current?.showModal();
+ },[menuOpen]);
+ function closeMenu(){if(menuOpen)setMenuClosing(true);}
+ function toggle() { const value = !dark; setDark(value); document.documentElement.dataset.theme = value ? 'dark' : 'light'; try { localStorage.setItem('lenskaya-theme', value ? 'dark' : 'light'); } catch {} }
+ const links = [{hash:'',title:'Главная'},{hash:'favorite',title:'Выгорание'},{hash:'works',title:'Работы'},{hash:'about',title:'О художнице'},{hash:'contact',title:'Контакт'}].map((item,index)=><a key={item.hash} href={'#'+item.hash} aria-current={slide===index?'page':undefined} onClick={closeMenu}>{item.title}</a>);
+ return <header className="header"><a className="wordmark" href="#" aria-label="На главную" onClick={closeMenu}>АЛ<span className="brand-dot">.</span></a><nav className="desktop-nav" aria-label="Основная навигация">{links}</nav><div className="header-actions"><button className="theme-toggle" onClick={toggle} aria-label={dark ? 'Включить светлую тему' : 'Включить тёмную тему'} title={dark ? 'Светлая тема' : 'Тёмная тема'}><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.4"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16Z" fill="currentColor" stroke="none"/></svg></button><button ref={menuButton} className="burger" aria-label={menuOpen ? 'Закрыть меню' : 'Открыть меню'} aria-expanded={menuOpen} aria-controls="touch-menu" onClick={()=>{setMenuClosing(false);setMenuOpen(true);}}><span/><span/></button></div><dialog ref={menuDialog} className="menu-drawer" data-closing={menuClosing} aria-label="Меню" onCancel={e=>{e.preventDefault();closeMenu();}} onAnimationEnd={e=>{if(e.target===e.currentTarget && menuClosing){menuDialog.current?.close();setMenuOpen(false);setMenuClosing(false);}}}><button className="drawer-close" aria-label="Закрыть меню" onClick={closeMenu}><svg aria-hidden="true" width="36" height="36" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="2"><path d="m7 7 18 18M25 7 7 25"/></svg></button><nav id="touch-menu" className="touch-menu" aria-label="Мобильная навигация">{links}</nav></dialog></header>;
 }
