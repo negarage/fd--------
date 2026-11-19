@@ -269,13 +269,9 @@ button {
 .theme-toggle {
   width: 42px;
   height: 42px;
-  border: 1px solid var(--line);
-  border-radius: 50%;
+  border: 0;
   display: grid;
   place-items: center;
-}
-.theme-toggle:hover {
-  border-color: var(--fg);
 }
 .hero {
   min-height: 700px;
