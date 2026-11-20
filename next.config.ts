@@ -1,7 +1,6 @@
 import type { NextConfig } from 'next';
 import { PHASE_DEVELOPMENT_SERVER } from 'next/constants';
 const config = (phase: string): NextConfig => ({
-  output: 'export',
   distDir: phase === PHASE_DEVELOPMENT_SERVER ? '.next-dev' : '.next',
   images: { unoptimized: true },
   devIndicators: false,
